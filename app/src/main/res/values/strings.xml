@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">serlinkoperate</string>
+
+    <string name="index_bottom_text_home">首页</string>
+    <string name="index_bottom_text_service">服务</string>
+    <string name="index_bottom_text_message">消息</string>
+    <string name="index_bottom_text_me">我的</string>
+
+    <string name="login_agreement_text1">登录即代表您同意</string>
+    <string name="login_agreement_text2">授权使用</string>
+    <string name="login_agreement_user">用户协议</string>
+    <string name="login_agreement_privacy_policy">隐私政策</string>
+    <string name="login_agreement_text3">您的账号信息（ 如昵称、头像、地址）以便您统一管理</string>
+
+    <string name="login_txt">本地号码一键登录</string>
+    <string name="other_phone">其他手机登录</string>
+    <string name="user_password_login">账密登录</string>
+    <string name="tips">未注册过的用户将直接为您创建SerLink账户</string>
+    <string name="register">注册</string>
+    <string name="protective_shield">账号安全  放心登录</string>
+    <string name="password_login">密码登录</string>
+    <string name="problems_encountered">遇到问题</string>
+    <string name="input_phone">请输入手机号码</string>
+    <string name="input_tips">未注册的手机号验证号后自动创建账号</string>
+    <string name="phone_86">+86</string>
+
+    <string name="input_user">请输入手机号</string>
+    <string name="input_password">请输入密码</string>
+    <string name="retrieve_password">找回密码</string>
+
+    <string name="code_login">验证码登录</string>
+    <string name="immediately_register">立即注册</string>
+
+    <string name="back_name">返回</string>
+    <string name="input_code">输入验证码</string>
+    <string name="input_code_name">验证码已发送：</string>
+    <string name="again_send">重新发送验证码</string>
+
+    <string name="input_forget_phone">输入手机号码</string>
+    <string name="input_forget_code">输入验证码</string>
+    <string name="input_get_code">获取验证码</string>
+
+    <string name="save_password">设置密码</string>
+    <string name="save_password_error">请输入6~12位字母、数字</string>
+
+    <string name="next">下一步</string>
+    <string name="tab_home">首页</string>
+    <string name="tab_see">监控</string>
+    <string name="tab_message">消息</string>
+    <string name="tab_me">我的</string>
+    <string name="password_error">用户名或密码错误</string>
+    <string name="truename">实名认证</string>
+    <string name="passset">密码管理</string>
+</resources>

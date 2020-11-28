@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_login_phone"
+    app:layout_constraintTop_toBottomOf="@+id/iv_login_icon"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp">
+
+    <include layout="@layout/layout_login_phone_onekey" />
+
+    <include layout="@layout/layout_login_phone_input" />
+
+    <include layout="@layout/layout_login_phone_password" />
+
+</LinearLayout>

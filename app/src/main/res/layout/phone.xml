@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
+    android:padding="15dp"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="李大壮:18811112222"
+        android:textSize="25sp"
+        android:id="@+id/phone_person"
+        android:background="@color/white"
+        android:textColor="#1ABD9D"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DFDFE0"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="客服热线:95666"
+        android:textSize="25sp"
+        android:id="@+id/phone_set"
+        android:background="@color/white"
+        android:textColor="#1ABD9D"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DFDFE0"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:id="@+id/phone_cannle"
+        android:textSize="25sp"
+        android:background="@color/white"
+        android:textColor="#1ABD9D"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DFDFE0"
+        />
+</LinearLayout>

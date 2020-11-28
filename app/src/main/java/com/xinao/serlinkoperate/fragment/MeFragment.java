@@ -1,0 +1,187 @@
+package com.xinao.serlinkoperate.fragment;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.xinao.serlinkoperate.activity.HeadInfoActivity;
+import com.xinao.serlinkoperate.activity.IdeaActivity;
+import com.xinao.serlinkoperate.activity.ProblemActivity;
+import com.xinao.serlinkoperate.R;
+import com.xinao.serlinkoperate.activity.SafeActivity;
+import com.xinao.serlinkoperate.activity.tool.ToolActivity;
+import com.xinao.serlinkoperate.base.BaseFragment;
+import com.xinao.serlinkoperate.base.IBaseView;
+import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.login_register.LoginActivity;
+import com.xinao.serlinkoperate.wedgit.PhonePopWindow;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class MeFragment extends BaseFragment<Presenter> implements IBaseView {
+
+    @BindView(R.id.login)
+    TextView login;
+    @BindView(R.id.group3)
+    LinearLayout group3;
+    @BindView(R.id.group2)
+    LinearLayout group2;
+    @BindView(R.id.item_img)
+    ImageView itemImg;
+    @BindView(R.id.item_iright)
+    ImageView itemIright;
+    @BindView(R.id.tool)
+    RelativeLayout tool;
+    @BindView(R.id.img2)
+    ImageView img2;
+    @BindView(R.id.item_text)
+    TextView itemText;
+    @BindView(R.id.safe)
+    RelativeLayout safe;
+    @BindView(R.id.phone)
+    ImageView phone;
+    @BindView(R.id.group1)
+    RelativeLayout group1;
+    @BindView(R.id.img3)
+    ImageView img3;
+    @BindView(R.id.img5)
+    ImageView img5;
+    @BindView(R.id.img6)
+    ImageView img6;
+    @BindView(R.id.item6)
+    RelativeLayout item6;
+    @BindView(R.id.head)
+    ImageView head;
+    @BindView(R.id.problem)
+    RelativeLayout problem;
+    @BindView(R.id.idea)
+    RelativeLayout idea;
+
+    public static MeFragment newInstance(Bundle bundle) {
+        MeFragment fragment = new MeFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    protected void refreshData() {
+
+    }
+
+    @Override
+    protected int provideContentViewId() {
+        return R.layout.fragment_me;
+    }
+
+    @Override
+    protected void initPresenter() {
+        mPresenter = new Presenter(this);
+        mPresenter.init();
+    }
+
+    @Override
+    protected void loadData() {
+
+    }
+
+    @Override
+    public void init() {
+        initListener();
+    }
+
+    private void initListener() {
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhonePopWindow phonePopWindow = new PhonePopWindow(getActivity());
+                getActivity().getWindow().getDecorView().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        phonePopWindow.showBottom(getActivity().getWindow().getDecorView());
+                    }
+                });
+                phonePopWindow.setmListener(new PhonePopWindow.PhoneListener() {
+                    @Override
+                    public void callPerson() {
+                        String person = "18811112222";
+                        callPhone(person);
+                        Toast.makeText(getActivity(), person, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void callSet() {
+                        String set = "95666";
+                        callPhone(set);
+                    }
+
+                    @Override
+                    public void canle() {
+                        phonePopWindow.dismiss();
+                        Toast.makeText(getActivity(), "person", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    /**
+     * 拨打电话（跳转到拨号界面，用户手动点击拨打）
+     *
+     * @param phoneNum 电话号码
+     */
+    public void callPhone(String phoneNum) {
+        //android6版本获取动态权限
+        if (Build.VERSION.SDK_INT >= 23) {
+            int REQUEST_CODE_CONTACT = 101;
+            String[] permissions = {Manifest.permission.CALL_PHONE};
+            //验证是否许可权限
+            for (String str : permissions) {
+                if (getActivity().checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                    //申请权限
+                    this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
+                    return;
+                }
+            }
+        }
+        //如果需要手动拨号将Intent.ACTION_CALL改为Intent.ACTION_DIAL（跳转到拨号界面，用户手动点击拨打）
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+    }
+
+
+    @OnClick({R.id.login, R.id.tool, R.id.safe, R.id.head, R.id.problem,R.id.idea})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.login:
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                break;
+            case R.id.tool:
+                startActivity(new Intent(getActivity(), ToolActivity.class));
+                break;
+            case R.id.safe:
+                startActivity(new Intent(getActivity(), SafeActivity.class));
+                break;
+            case R.id.head:
+                startActivity(new Intent(getActivity(), HeadInfoActivity.class));
+                break;
+            case R.id.problem:
+                startActivity(new Intent(getActivity(), ProblemActivity.class));
+                break;
+            case R.id.idea:
+                startActivity(new Intent(getActivity(), IdeaActivity.class));
+                break;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <include layout="@layout/layout_back"/>
+
+    <TextView
+        android:id="@+id/tv_code_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:layout_marginLeft="44dp"
+        android:text="@string/input_code"
+        android:textColor="@color/color_333333"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@+id/ll_back"
+        app:layout_constraintTop_toBottomOf="@+id/ll_back"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/tv_code_phone_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/input_code_name"
+        android:textColor="@color/color_333333"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_code_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_code_title"
+        tools:ignore="MissingConstraints" />
+
+
+    <com.xinao.serlinkoperate.wedgit.NumberCaptchaInputView
+        android:id="@+id/nciv_code"
+        android:layout_width="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textSize="33dp"
+        app:captchaSize="6"
+        app:gapWidth="5dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_code_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_code_phone_name"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_code_input_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/input_tips"
+        android:textColor="@color/color_b6b6b6"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_code_title"
+        app:layout_constraintTop_toBottomOf="@+id/nciv_code"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_code_again_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/again_send"
+        android:textColor="@color/color_mian"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_code_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_code_input_tips"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.xinao.serlinkoperate.wedgit.BottomNavigation
+        android:id="@+id/main_bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottomNavigationBottomMargin="6dp"
+        app:bottomNavigationDeliverLine="true"
+        app:bottomNavigationDeliverLineColor="@color/gray"
+        app:bottomNavigationDeliverLineWidth="1dp"
+        app:bottomNavigationLeftMargin="27dp"
+        app:bottomNavigationRightMargin="27dp"
+        app:bottomNavigationTextColor="@color/bottom_navigation_text_color"
+        app:bottomNavigationTextSize="10dp"
+        app:bottomNavigationTopMargin="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.xinao.serlinkoperate.wedgit.NoSlidingViewPager
+        android:id="@+id/vp_fragment_list_top"
+        style="@style/MatchMatch"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

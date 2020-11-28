@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="34dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tv_login_other_phone">
+
+    <ImageView
+        android:id="@+id/iv_login_alipay"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/icon_alipay"
+        app:layout_constraintRight_toLeftOf="@+id/iv_login_weichat"
+        app:layout_constraintTop_toTopOf="@+id/iv_login_weichat"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/iv_login_weichat"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="12dp"
+        android:src="@drawable/icon_weichat"
+        app:layout_constraintRight_toLeftOf="@+id/tv_login_or"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_or"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/iv_login_blog"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/icon_blog"
+        app:layout_constraintLeft_toRightOf="@+id/tv_login_or"
+        app:layout_constraintTop_toTopOf="@+id/iv_login_weichat"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/iv_login_tencent"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/icon_tencent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_login_blog"
+        app:layout_constraintTop_toTopOf="@+id/iv_login_weichat"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_login_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="or"
+        android:textColor="@color/color_918E8F"
+        android:textSize="11sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_login_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tips"
+        android:textColor="@color/color_b6b6b6"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_login_weichat"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/view_line_or_left"
+        android:layout_width="10dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="6dp"
+        android:background="@color/color_918E8F"
+        app:layout_constraintRight_toLeftOf="@+id/tv_login_or"
+        app:layout_constraintTop_toTopOf="@+id/tv_login_or"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/view_line_or_right"
+        android:layout_width="10dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/color_918E8F"
+        app:layout_constraintLeft_toRightOf="@+id/tv_login_or"
+        app:layout_constraintTop_toTopOf="@+id/tv_login_or"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

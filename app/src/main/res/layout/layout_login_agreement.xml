@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <LinearLayout
+        android:id="@+id/ll_login_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_login_agreement"
+        tools:ignore="MissingConstraints">
+
+        <CheckBox
+            android:id="@+id/cb_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:clickable="false" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agreement_text1"
+            android:textColor="@color/color_333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_agreement_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agreement_user"
+            android:textColor="@color/color_mian"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="、"
+            android:textColor="@color/color_333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_agreement_privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agreement_privacy_policy"
+            android:textColor="@color/color_mian"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agreement_text2"
+            android:textColor="@color/color_333333"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_login_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:text="@string/login_agreement_text3"
+        android:textColor="@color/color_333333"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
