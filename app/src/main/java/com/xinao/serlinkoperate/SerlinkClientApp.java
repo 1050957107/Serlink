@@ -1,4 +1,4 @@
-package com.xinao.serlinkoperate.activity;
+package com.xinao.serlinkoperate;
 
 import android.app.Application;
 import android.content.Context;

@@ -80,7 +80,8 @@
             android:text="清除缓存"
             />
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="8dp"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
@@ -110,8 +111,9 @@
             android:text="关于我们"
             />
         <ImageView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_width="8dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             android:id="@+id/iv_arrow_two"

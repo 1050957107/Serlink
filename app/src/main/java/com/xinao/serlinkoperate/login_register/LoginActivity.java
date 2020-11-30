@@ -1,5 +1,6 @@
 package com.xinao.serlinkoperate.login_register;
 
+import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -99,7 +100,9 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
 
     @Override
     public void init() {
-
+        if (bundle==null){
+            bundle=new Bundle();
+        }
         llBack.setOnClickListener(noDoubleClickListener);
         tvRegister.setOnClickListener(noDoubleClickListener);
         tvOther.setOnClickListener(noDoubleClickListener);

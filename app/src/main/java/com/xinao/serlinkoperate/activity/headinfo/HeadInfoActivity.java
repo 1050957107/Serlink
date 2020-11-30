@@ -13,6 +13,7 @@ import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.wedgit.NoDoubleClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,19 +73,22 @@ public class HeadInfoActivity extends BaseActivity<Presenter> implements IBaseVi
 
     @Override
     public void init() {
+        headinfoName.setOnClickListener(doubleClickListener);
+        ivCodeBack.setOnClickListener(doubleClickListener);
 
     }
-
-    @OnClick({R.id.headinfo_name, R.id.iv_code_back})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.headinfo_name:
-                startActivity(new Intent(HeadInfoActivity.this, ChangetNameActivity.class));
-                break;
-            case R.id.iv_code_back:
-                finish();
-                break;
+    private NoDoubleClickListener doubleClickListener=new NoDoubleClickListener() {
+        @Override
+        protected void onNoDoubleClick(View v) {
+            switch (v.getId()){
+                case R.id.headinfo_name:
+                    startActivity(new Intent(HeadInfoActivity.this, ChangetNameActivity.class));
+                    break;
+                case R.id.iv_code_back:
+                    finish();
+                    break;
+            }
         }
-    }
+    };
 
 }

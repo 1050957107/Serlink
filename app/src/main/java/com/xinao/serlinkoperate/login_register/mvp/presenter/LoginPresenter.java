@@ -12,7 +12,6 @@ public class LoginPresenter extends BasePresenter<ILoginView> implements ILoginM
         super(mView);
         this.model=new LoginModelImpl(this);
     }
-
     @Override
     protected void removeView() {
         if (null!=mView){

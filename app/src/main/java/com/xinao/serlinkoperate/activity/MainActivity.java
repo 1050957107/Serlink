@@ -14,6 +14,8 @@ import com.xinao.serlinkoperate.fragment.HomeFragment;
 import com.xinao.serlinkoperate.fragment.MeFragment;
 import com.xinao.serlinkoperate.fragment.MessageFragment;
 import com.xinao.serlinkoperate.fragment.ServiceFragment;
+import com.xinao.serlinkoperate.util.IKey;
+import com.xinao.serlinkoperate.util.InfoPrefs;
 import com.xinao.serlinkoperate.util.ToastUtil;
 import com.xinao.serlinkoperate.wedgit.BottomNavigation;
 import com.xinao.serlinkoperate.wedgit.FragmentAdapter;
@@ -57,6 +59,8 @@ public class MainActivity extends BaseActivity<Presenter> implements IBaseView {
 
     @Override
     public void init() {
+        InfoPrefs.init(IKey.KEY_XA_SPLASH,this);
+        InfoPrefs.setData(IKey.KEY_SPLASH_HOME,IKey.KEY_SPLASH_HOME);
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragments());
         noSlidingViewPager.setAdapter(fragmentAdapter);
         noSlidingViewPager.setScroll(false);

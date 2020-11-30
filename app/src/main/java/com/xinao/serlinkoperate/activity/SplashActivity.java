@@ -39,6 +39,15 @@ public class SplashActivity extends BaseActivity<Presenter> implements IBaseView
 
     @Override
     public void init() {
+        if (bundle==null){
+            bundle=new Bundle();
+        }
+        //首次启动 Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT 为 0，再次点击图标启动时就不为零了
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            LoggerUtils.e(TAG, "finish");
+            finish();
+            return;
+        }
 
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
@@ -46,28 +55,24 @@ public class SplashActivity extends BaseActivity<Presenter> implements IBaseView
                 //token在设备卸载重装的时候有可能会变
                 token= (String) data;
                 LoggerUtils.e("TPush", "注册成功，设备token为：" + data);
+                //说明进入首页
+                if (InfoPrefs.hasKey(IKey.KEY_SPLASH_HOME)) {
+                    goToMainActivity();
+                } else {
+                    bundle.putString(IKey.KEY_BUNDLE_TOKEN,token);
+                    IntentUtils.getIntance().intent(SplashActivity.this, LoginActivity.class, bundle);
+                    finish();
+                }
             }
 
             @Override
             public void onFail(Object data, int errCode, String msg) {
+                goToMainActivity();
                 LoggerUtils.e("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });
 
-        //首次启动 Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT 为 0，再次点击图标启动时就不为零了
-        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
-            LoggerUtils.e(TAG, "finish");
-            finish();
-            return;
-        }
-        //说明进入首页
-        if (InfoPrefs.hasKey(IKey.KEY_SPLASH_HOME)) {
-            goToMainActivity();
-        } else {
-            bundle.putString(IKey.KEY_BUNDLE_TOKEN,token);
-            IntentUtils.getIntance().intent(this, LoginActivity.class, bundle);
-            finish();
-        }
+
     }
 
     /**
