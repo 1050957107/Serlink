@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 public class ToastUtil {
 
-
 	public static void show(Context context, String info) {
 		Toast.makeText(context.getApplicationContext(), info, Toast.LENGTH_SHORT).show();
 	}
