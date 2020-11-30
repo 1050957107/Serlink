@@ -3,6 +3,7 @@ package com.xinao.serlinkoperate.login_register;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,10 +11,14 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.login_register.BindPhoneActivity;
+import com.xinao.serlinkoperate.login_register.CodeActivity;
+import com.xinao.serlinkoperate.login_register.ForgetPasswordActivity;
 import com.xinao.serlinkoperate.util.IHelper;
 import com.xinao.serlinkoperate.util.IKey;
 import com.xinao.serlinkoperate.util.IntentUtils;
@@ -65,8 +70,8 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
     @BindView(R.id.tv_retrieve_password)
     TextView tvRetrievePassword;//找回密码
 
-    @BindView(R.id.tv_login_submit)
-    TextView tvSubmit;//提交登录
+    @BindView(R.id.btn_login_submit)
+    Button btnSubmit;//提交登录
 
     //登录类型
     private int loginType = IHelper.LOGIN_TYPE_ONEKEY;
@@ -85,6 +90,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
         if (null==instance) {
             instance = this;
         }
+        bundle=getIntent().getExtras();
         mPresenter = new Presenter(this);
         mPresenter.init();
     }
@@ -105,7 +111,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
         tvPrivacyPolicy.setOnClickListener(noDoubleClickListener);
         ivPassword.setOnClickListener(noDoubleClickListener);
         tvRetrievePassword.setOnClickListener(noDoubleClickListener);
-        tvSubmit.setOnClickListener(noDoubleClickListener);
+        btnSubmit.setOnClickListener(noDoubleClickListener);
 
         findViewById(R.id.iv_login_weichat).setOnClickListener(noDoubleClickListener);
     }
@@ -144,7 +150,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
                 case R.id.tv_agreement_privacy_policy:
                     //隐私政策
                     break;
-                case R.id.tv_login_submit:
+                case R.id.btn_login_submit:
                     //提交登录
                     submitClick();
                     break;
@@ -178,7 +184,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
             //恢复《账密登录》文本
             tvPassword.setText(getResources().getString(R.string.user_password_login));
             //提交按钮文字变为《本地号码一键登录》
-            tvSubmit.setText(getResources().getString(R.string.login_txt));
+            btnSubmit.setText(getResources().getString(R.string.login_txt));
         }
     }
 
@@ -198,7 +204,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
             //《账密登录》文本变为《遇到问题》
             tvPassword.setText(getResources().getString(R.string.problems_encountered));
             //提交按钮文字变为《发送验证码》
-            tvSubmit.setText("发送验证码");
+            btnSubmit.setText("发送验证码");
         }
     }
 
@@ -217,7 +223,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements IBaseView 
             //《遇到问题》文本变为《立即注册》
             tvPassword.setText(getResources().getString(R.string.immediately_register));
             //提交按钮文字变为《登录》
-            tvSubmit.setText("登录");
+            btnSubmit.setText("登录");
         }
     }
 

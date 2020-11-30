@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xinao.serlinkoperate">
-    <!-- 允许应用震动 -->
+    <!-- 允许程序获取任务信息 -->
     <application
         android:name=".activity.SerlinkClientApp"
         android:allowBackup="false"
@@ -16,9 +16,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon, android:theme">
-        <activity android:name=".activity.IdeaActivity"></activity>
-        <activity android:name=".activity.ProblemActivity" />
-        <activity android:name=".activity.HeadInfoActivity" />
+        <activity android:name=".activity.set.AboutAppActivity"></activity>
+        <activity android:name=".activity.problem.type.ProblemTypeOneActivity" />
+        <activity android:name=".activity.set.SettingActivity" />
+        <activity android:name=".activity.set.SettingsActivity" />
+        <activity android:name=".activity.headinfo.ChangetNameActivity" />
+        <activity android:name=".activity.IdeaActivity" />
+        <activity android:name=".activity.problem.ProblemActivity" />
+        <activity android:name=".activity.headinfo.HeadInfoActivity" />
         <activity android:name=".activity.SafeActivity" />
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.tool.ToolActivity" />
@@ -78,10 +83,16 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-    </application> <!-- 允许应用访问手机状态 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序写入外部存储 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序结束任务 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序获取任务信息 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />

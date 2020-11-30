@@ -1,70 +1,70 @@
 package com.xinao.serlinkoperate.wedgit;
 
+
+
 import android.content.Context;
-import android.view.LayoutInflater;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
 import com.xinao.serlinkoperate.R;
+
+import razerdp.basepopup.BasePopupWindow;
 
 /**
  * @date：2020/11/27
  * @describe：
  * @author：DanDan
  */
-public class PhonePopWindow extends MvpCommonPopView {
-    private PhoneListener mListener;
+public class PhonePopWindow extends BasePopupWindow {
+    private TextView tvPhonePerspn,tvPhoneSet,tvCanCle;
+    private OnPhoneListener mOnPhoneListener;
 
-    public PhonePopWindow(Context context) {
-        super(context);
-    }
-
-    public PhonePopWindow setmListener(PhoneListener mListener) {
-        this.mListener = mListener;
+    public PhonePopWindow setmOnPhoneListener(OnPhoneListener mOnPhoneListener) {
+        this.mOnPhoneListener = mOnPhoneListener;
         return this;
     }
 
-    @Override
-    protected void setView(Context context) {
-        super.setView(context);
-        initView(context);
-    }
-
-    private void initView(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.phone, null);
-        TextView cannle = view.findViewById(R.id.phone_cannle);
-        TextView phone_person = view.findViewById(R.id.phone_person);
-        TextView phone_set = view.findViewById(R.id.phone_set);
-        setFocusable(false);
-        phone_person.setOnClickListener(new View.OnClickListener() {
+    public PhonePopWindow(Context context) {
+        super(context);
+        tvPhonePerspn = findViewById(R.id.phone_person);
+        tvPhoneSet = findViewById(R.id.phone_set);
+        tvCanCle = findViewById(R.id.phone_cannle);
+        tvPhonePerspn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.callPerson();
-            }
-        });
-        phone_set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.callSet();
-            }
-        });
-        cannle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mListener != null) {
-                    mListener.canle();
+                if (mOnPhoneListener!=null){
+                    mOnPhoneListener.setPhonePerson();
                 }
             }
         });
-        setContentView(view);
-//        setOnBackKeyDismiss(false);
+        tvPhoneSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnPhoneListener!=null){
+                    mOnPhoneListener.setPhoneSet();
+                }
+            }
+        });
+        tvCanCle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnPhoneListener!=null){
+                    mOnPhoneListener.Cancle();
+                }
+            }
+        });
     }
 
-    public interface PhoneListener {
-        void callPerson();
 
-        void callSet();
+    @Override
+    public View onCreateContentView() {
+        return createPopupById(R.layout.phone);
+    }
 
-        void canle();
+    public interface OnPhoneListener{
+        void setPhonePerson();
+        void setPhoneSet();
+        void Cancle();
     }
 }

@@ -9,7 +9,7 @@
     <com.xinao.serlinkoperate.wedgit.BottomNavigation
         android:id="@+id/main_bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:bottomNavigationBottomMargin="6dp"
         app:bottomNavigationDeliverLine="true"
         app:bottomNavigationDeliverLineColor="@color/gray"
@@ -21,7 +21,8 @@
         app:bottomNavigationTopMargin="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <com.xinao.serlinkoperate.wedgit.NoSlidingViewPager
         android:id="@+id/vp_fragment_list_top"

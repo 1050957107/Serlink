@@ -3,30 +3,36 @@ package com.xinao.serlinkoperate.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.xinao.serlinkoperate.activity.HeadInfoActivity;
-import com.xinao.serlinkoperate.activity.IdeaActivity;
-import com.xinao.serlinkoperate.activity.ProblemActivity;
 import com.xinao.serlinkoperate.R;
+import com.xinao.serlinkoperate.activity.IdeaActivity;
 import com.xinao.serlinkoperate.activity.SafeActivity;
+import com.xinao.serlinkoperate.activity.headinfo.HeadInfoActivity;
+import com.xinao.serlinkoperate.activity.problem.ProblemActivity;
+import com.xinao.serlinkoperate.activity.set.SettingsActivity;
 import com.xinao.serlinkoperate.activity.tool.ToolActivity;
 import com.xinao.serlinkoperate.base.BaseFragment;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.login_register.BindPhoneActivity;
 import com.xinao.serlinkoperate.login_register.LoginActivity;
+import com.xinao.serlinkoperate.util.IntentUtils;
+import com.xinao.serlinkoperate.wedgit.NoDoubleClickListener;
 import com.xinao.serlinkoperate.wedgit.PhonePopWindow;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import razerdp.basepopup.BasePopupWindow;
 
 public class MeFragment extends BaseFragment<Presenter> implements IBaseView {
 
@@ -58,14 +64,15 @@ public class MeFragment extends BaseFragment<Presenter> implements IBaseView {
     ImageView img5;
     @BindView(R.id.img6)
     ImageView img6;
-    @BindView(R.id.item6)
-    RelativeLayout item6;
     @BindView(R.id.head)
     ImageView head;
     @BindView(R.id.problem)
     RelativeLayout problem;
     @BindView(R.id.idea)
     RelativeLayout idea;
+    @BindView(R.id.me_set)
+    RelativeLayout meset;
+    private PhonePopWindow mPhonePopWindow;
 
     public static MeFragment newInstance(Bundle bundle) {
         MeFragment fragment = new MeFragment();
@@ -100,40 +107,57 @@ public class MeFragment extends BaseFragment<Presenter> implements IBaseView {
     }
 
     private void initListener() {
+        if (null == mPhonePopWindow) {
+            mPhonePopWindow = new PhonePopWindow(getActivity());
+            mPhonePopWindow.setPopupGravity(Gravity.BOTTOM);
+            mPhonePopWindow.setBackground(Color.TRANSPARENT);
+            mPhonePopWindow.setPopupGravityMode(BasePopupWindow.GravityMode.ALIGN_TO_ANCHOR_SIDE);
+        }
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PhonePopWindow phonePopWindow = new PhonePopWindow(getActivity());
-                getActivity().getWindow().getDecorView().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        phonePopWindow.showBottom(getActivity().getWindow().getDecorView());
-                    }
-                });
-                phonePopWindow.setmListener(new PhonePopWindow.PhoneListener() {
-                    @Override
-                    public void callPerson() {
-                        String person = "18811112222";
-                        callPhone(person);
-                        Toast.makeText(getActivity(), person, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void callSet() {
-                        String set = "95666";
-                        callPhone(set);
-                    }
-
-                    @Override
-                    public void canle() {
-                        phonePopWindow.dismiss();
-                        Toast.makeText(getActivity(), "person", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if (mPhonePopWindow != null && !mPhonePopWindow.isShowing()) {
+                    mPhonePopWindow.showPopupWindow();
+                    mPhonePopWindow.setPopupGravity(Gravity.BOTTOM);
+                }
             }
         });
+        login.setOnClickListener(doubleClickListener);
+        tool.setOnClickListener(doubleClickListener);
+        safe.setOnClickListener(doubleClickListener);
+        problem.setOnClickListener(doubleClickListener);
+        idea.setOnClickListener(doubleClickListener);
+        meset.setOnClickListener(doubleClickListener);
+        head.setOnClickListener(doubleClickListener);
     }
-
+    private NoDoubleClickListener doubleClickListener=new NoDoubleClickListener() {
+        @Override
+        protected void onNoDoubleClick(View v) {
+            switch (v.getId()){
+                case R.id.login:
+                    IntentUtils.getIntance().intent(getActivity(), LoginActivity.class, null);
+                    break;
+                case R.id.tool:
+                    IntentUtils.getIntance().intent(getActivity(), ToolActivity.class, null);
+                    break;
+                case R.id.safe:
+                    IntentUtils.getIntance().intent(getActivity(), SafeActivity.class, null);
+                    break;
+                case R.id.head:
+                    IntentUtils.getIntance().intent(getActivity(), HeadInfoActivity.class, null);
+                    break;
+                case R.id.problem:
+                    IntentUtils.getIntance().intent(getActivity(), ProblemActivity.class, null);
+                    break;
+                case R.id.idea:
+                    IntentUtils.getIntance().intent(getActivity(), IdeaActivity.class, null);
+                    break;
+                case R.id.me_set:
+                    IntentUtils.getIntance().intent(getActivity(), SettingsActivity.class, null);
+                    break;
+            }
+        }
+    } ;
     /**
      * 拨打电话（跳转到拨号界面，用户手动点击拨打）
      *
@@ -158,30 +182,5 @@ public class MeFragment extends BaseFragment<Presenter> implements IBaseView {
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
         startActivity(intent);
-    }
-
-
-    @OnClick({R.id.login, R.id.tool, R.id.safe, R.id.head, R.id.problem,R.id.idea})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.login:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                break;
-            case R.id.tool:
-                startActivity(new Intent(getActivity(), ToolActivity.class));
-                break;
-            case R.id.safe:
-                startActivity(new Intent(getActivity(), SafeActivity.class));
-                break;
-            case R.id.head:
-                startActivity(new Intent(getActivity(), HeadInfoActivity.class));
-                break;
-            case R.id.problem:
-                startActivity(new Intent(getActivity(), ProblemActivity.class));
-                break;
-            case R.id.idea:
-                startActivity(new Intent(getActivity(), IdeaActivity.class));
-                break;
-        }
     }
 }

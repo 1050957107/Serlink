@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".activity.HeadInfoActivity">
+    android:padding="15dp"
+    tools:context=".activity.headinfo.HeadInfoActivity">
     <LinearLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,8 +16,9 @@
         >
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_code_back"
             android:src="@drawable/icon_back_black" />
         <TextView
             style="@style/AppTheme.TextCenterStyle"
@@ -31,8 +30,6 @@
         app:layout_constraintTop_toBottomOf="@id/ll"
         android:layout_width="match_parent"
         android:id="@+id/rl"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
@@ -49,19 +46,15 @@
             />
     </RelativeLayout>
     <ImageView
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         style="@style/AppTheme.Horizontal_Line"
         app:layout_constraintTop_toBottomOf="@id/rl"
         />
     <RelativeLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toBottomOf="@id/rl"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rl2"
+        android:id="@+id/headinfo_name"
         >
         <TextView
             style="@style/AppTheme.TextStyle"
@@ -86,13 +79,11 @@
     <ImageView
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        app:layout_constraintTop_toBottomOf="@id/rl2"
+        app:layout_constraintTop_toBottomOf="@id/headinfo_name"
         style="@style/AppTheme.Horizontal_Line"
        />
     <RelativeLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        app:layout_constraintTop_toBottomOf="@id/rl2"
+        app:layout_constraintTop_toBottomOf="@id/headinfo_name"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,8 +116,6 @@
         style="@style/AppTheme.Horizontal_Line"
         />
     <RelativeLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toBottomOf="@id/rl3"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
@@ -168,8 +157,6 @@
         app:layout_constraintTop_toBottomOf="@id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="40dp"
         android:id="@+id/ll_l"
         >
@@ -184,8 +171,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toBottomOf="@id/ll_l"
         />
     <ImageView
@@ -204,8 +189,6 @@
         android:id="@+id/line4"
         />
     <RelativeLayout
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toBottomOf="@id/line4"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
@@ -235,8 +218,6 @@
             />
     </RelativeLayout>
     <ImageView
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         app:layout_constraintTop_toBottomOf="@id/rl3"
         style="@style/AppTheme.Horizontal_Line"
         />

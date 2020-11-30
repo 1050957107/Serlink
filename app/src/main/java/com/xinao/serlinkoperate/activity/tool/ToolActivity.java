@@ -1,5 +1,9 @@
 package com.xinao.serlinkoperate.activity.tool;
 
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -7,20 +11,27 @@ import com.google.android.material.tabs.TabLayout;
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.activity.tool.toolfragment.ProjectFragment;
 import com.xinao.serlinkoperate.base.BaseActivity;
+import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
 import com.xinao.serlinkoperate.wedgit.FragmentAdapter;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class ToolActivity extends BaseActivity {
+public class ToolActivity extends BaseActivity<Presenter> implements IBaseView {
 
 
     @BindView(R.id.tool_tab)
     TabLayout toolTab;
     @BindView(R.id.tool_ViewPager)
     ViewPager toolViewPager;
+    @BindView(R.id.iv_code_back)
+    ImageView ivCodeBack;
+    @BindView(R.id.ll)
+    LinearLayout ll;
 
 
     @Override
@@ -77,5 +88,11 @@ public class ToolActivity extends BaseActivity {
             fragments.add(new ProjectFragment());
         }
         return fragments;
+    }
+
+
+    @OnClick(R.id.iv_code_back)
+    public void onViewClicked() {
+        finish();
     }
 }

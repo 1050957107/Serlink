@@ -1,15 +1,22 @@
 package com.xinao.serlinkoperate.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
+import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
 
-public class IdeaActivity extends BaseActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+public class IdeaActivity extends BaseActivity<Presenter> implements IBaseView {
+
+
+    @BindView(R.id.iv_code_back)
+    ImageView ivCodeBack;
 
     @Override
     protected int provideContentViewId() {
@@ -18,7 +25,7 @@ public class IdeaActivity extends BaseActivity {
 
     @Override
     protected void initPresenter() {
-        mPresenter=new Presenter(this);
+        mPresenter = new Presenter(this);
         mPresenter.init();
     }
 
@@ -30,5 +37,11 @@ public class IdeaActivity extends BaseActivity {
     @Override
     public void init() {
 
+    }
+
+
+    @OnClick(R.id.iv_code_back)
+    public void onViewClicked() {
+        finish();
     }
 }

@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-
 import com.xinao.serlinkoperate.R;
 
 import java.util.ArrayList;
@@ -72,6 +71,10 @@ public class BottomNavigation extends ConstraintLayout {
 
     }
 
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
 
     @Nullable
     @Override
@@ -126,7 +129,6 @@ public class BottomNavigation extends ConstraintLayout {
         return this;
     }
 
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -159,7 +161,6 @@ public class BottomNavigation extends ConstraintLayout {
         initView();
 
     }
-
 
     private void initView() {
 
@@ -263,7 +264,6 @@ public class BottomNavigation extends ConstraintLayout {
 
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -271,6 +271,28 @@ public class BottomNavigation extends ConstraintLayout {
             canvas.drawLine(0, 0, getWidth(), 0, mLinePaint);
         }
 
+    }
+
+
+    public interface NavigationAdapter<TH extends TabHolder> {
+
+        TH createHolder(ViewGroup parent, int position);
+
+        void bindData(TH holder, int position);
+
+        int getCount();
+
+        TH getHolderByPosition(int position);
+
+    }
+
+    public interface OnTabSelectedListener {
+
+        void onTabSelect(View tab, int position);
+
+        void onTabUnSelect(View tab, int position);
+
+        void onTabReSelected(View tab, int position);
     }
 
     public static class SimpleNavigationAdapter implements NavigationAdapter<SimpleNavigationAdapter.SimpleTabHolder> {
@@ -371,7 +393,7 @@ public class BottomNavigation extends ConstraintLayout {
 
             if (navigation.mCurrentPosition == position) {
                 holder.mItemView.setChecked(true);
-                if(navigation.mTabSelectedListener == null){
+                if (navigation.mTabSelectedListener == null) {
                     mPreCheckedTab = holder.mItemView;
                 }
 
@@ -401,25 +423,12 @@ public class BottomNavigation extends ConstraintLayout {
 
     }
 
-
     public static abstract class TabHolder<T extends View> {
-       protected T mItemView;
+        protected T mItemView;
 
-       public TabHolder(T itemView) {
+        public TabHolder(T itemView) {
             this.mItemView = itemView;
         }
-
-    }
-
-    public interface NavigationAdapter<TH extends TabHolder> {
-
-        TH createHolder(ViewGroup parent, int position);
-
-        void bindData(TH holder, int position);
-
-        int getCount();
-
-        TH getHolderByPosition(int position);
 
     }
 
@@ -439,18 +448,5 @@ public class BottomNavigation extends ConstraintLayout {
         String getTitle() {
             return title;
         }
-    }
-
-    public interface OnTabSelectedListener {
-
-        void onTabSelect(View tab, int position);
-
-        void onTabUnSelect(View tab, int position);
-
-        void onTabReSelected(View tab, int position);
-    }
-    public static  int dip2px(Context context,float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
     }
 }

@@ -1,9 +1,10 @@
-package com.xinao.serlinkoperate.activity;
+package com.xinao.serlinkoperate.activity.set;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
@@ -14,21 +15,30 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SafeActivity extends BaseActivity<Presenter> implements IBaseView {
-
+public class AboutAppActivity extends BaseActivity<Presenter> implements IBaseView {
 
     @BindView(R.id.iv_code_back)
     ImageView ivCodeBack;
-    @BindView(R.id.ll)
-    LinearLayout ll;
-    @BindView(R.id.iv_arrow)
-    ImageView ivArrow;
-    @BindView(R.id.passset)
-    RelativeLayout passset;
+    @BindView(R.id.group1)
+    LinearLayout group1;
+    @BindView(R.id.appicon)
+    ImageView appicon;
+    @BindView(R.id.appname)
+    TextView appname;
+    @BindView(R.id.appvsicon)
+    TextView appvsicon;
+    @BindView(R.id.img1)
+    ImageView img1;
+    @BindView(R.id.group2)
+    RelativeLayout group2;
+    @BindView(R.id.img2)
+    ImageView img2;
+    @BindView(R.id.group3)
+    RelativeLayout group3;
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_safe;
+        return R.layout.activity_about_app;
     }
 
     @Override
@@ -44,7 +54,6 @@ public class SafeActivity extends BaseActivity<Presenter> implements IBaseView {
 
     @Override
     public void init() {
-
 
     }
 

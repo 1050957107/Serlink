@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:padding="15dp"
-    tools:context=".activity.problem.ProblemActivity">
+    tools:context=".activity.set.SettingActivity">
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/group1"
@@ -21,138 +22,127 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="常见问题"
+            android:text="通知设置"
             android:textSize="18sp"
             android:textColor="#333333"
             />
     </LinearLayout>
-    <ImageView
-        style="@style/AppTheme.Horizontal_Line"
-        app:layout_constraintTop_toBottomOf="@id/group1"
-        android:layout_marginTop="9dp"
-        android:background="#EBEBEB"
-        android:id="@+id/img1"
-        tools:ignore="MissingConstraints" />
     <TextView
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/img1"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="24dp"
+        android:text="应用未打开时"
         android:textSize="14sp"
-        android:textColor="#333333"
         android:id="@+id/tv1"
-        android:text="问题类型"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@id/group1"
         />
     <RelativeLayout
-        android:id="@+id/problem_type_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:id="@+id/group2"
         app:layout_constraintTop_toBottomOf="@id/tv1"
-        android:layout_marginTop="29dp"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="值守站每次巡检时如何进行？"
+            android:gravity="center_horizontal"
+            android:text="新消息通知"
             android:textSize="14sp"
             android:textColor="#333333"
             />
-        <ImageView
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
     <ImageView
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/problem_type_one"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:id="@+id/img2"
         android:background="#EBEBEB"
+        android:layout_marginTop="16dp"
+        android:id="@+id/img1"
+        app:layout_constraintTop_toBottomOf="@id/group2"
         />
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
         android:id="@+id/group3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/img2"
-        android:layout_marginTop="29dp"
+        app:layout_constraintTop_toBottomOf="@id/img1"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="巡检计划无法编辑？"
+            android:gravity="center_horizontal"
+            android:text="通知显示消息详情"
             android:textSize="14sp"
             android:textColor="#333333"
             />
-        <ImageView
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EBEBEB"
         android:layout_marginTop="16dp"
+        android:id="@+id/img2"
         app:layout_constraintTop_toBottomOf="@id/group3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:id="@+id/img3"
-        android:background="#EBEBEB"
         />
     <RelativeLayout
-        android:id="@+id/group4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/img3"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="37dp"
+        android:id="@+id/group4"
+        app:layout_constraintTop_toBottomOf="@id/img2"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="值班设置无法生成值班表?"
+            android:gravity="center_horizontal"
+            android:text="系统通知"
             android:textSize="14sp"
             android:textColor="#333333"
             />
-        <ImageView
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
     <ImageView
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/group4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:id="@+id/img4"
         android:background="#EBEBEB"
+        android:layout_marginTop="16dp"
+        android:id="@+id/img3"
+        app:layout_constraintTop_toBottomOf="@id/group4"
         />
     <RelativeLayout
-        android:id="@+id/group5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/img4"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="37dp"
+        android:id="@+id/group5"
+        app:layout_constraintTop_toBottomOf="@id/img3"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="遥测越限告警信息频繁?"
+            android:gravity="center_horizontal"
+            android:text="活动通知"
             android:textSize="14sp"
             android:textColor="#333333"
             />
-        <ImageView
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>

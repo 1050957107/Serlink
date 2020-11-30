@@ -2,20 +2,22 @@ package com.xinao.serlinkoperate.login_register;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.xinao.serlinkoperate.activity.MainActivity;
+
 import com.xinao.serlinkoperate.R;
+import com.xinao.serlinkoperate.activity.MainActivity;
 import com.xinao.serlinkoperate.base.BaseActivity;
 import com.xinao.serlinkoperate.bean.login.LoginResponse;
 import com.xinao.serlinkoperate.bean.login.SmsCode;
 import com.xinao.serlinkoperate.login_register.mvp.presenter.CodePresenter;
 import com.xinao.serlinkoperate.login_register.mvp.view.ICodeView;
-import com.xinao.serlinkoperate.net.body.login.LoginByPhoneBody;
-import com.xinao.serlinkoperate.net.body.login.SmsCodeBody;
+import com.xinao.serlinkoperate.util.IHelper;
 import com.xinao.serlinkoperate.util.IKey;
 import com.xinao.serlinkoperate.util.IntentUtils;
 import com.xinao.serlinkoperate.util.LoggerUtils;
@@ -26,7 +28,7 @@ import com.xinao.serlinkoperate.wedgit.TimerCount;
 
 import butterknife.BindView;
 
-public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeView {
+public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeView, IHandlerListener {
     private static final String TAG = CodeActivity.class.getName();
 
     @BindView(R.id.ll_back)
@@ -43,7 +45,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
     private Bundle bundle;
     private String phone;
 
-
+    private PublicHander publicHander;
 
     @Override
     protected int provideContentViewId() {
@@ -62,6 +64,11 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
         if (null != timer) {
             timer.onFinish();
         }
+        if (null != publicHander) {
+            publicHander.removeMessages(IHelper.HANDLER_LOGIN_CODE_SUCCESS);
+            publicHander.removeMessages(IHelper.HANDLER_LOGIN_CODE_ERROR);
+            publicHander = null;
+        }
     }
 
     @Override
@@ -72,6 +79,11 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
             timer = new TimerCount(60000, 1000, tvAgainSend);
             timer.setTxt("重新发送验证码");
         }
+        if (null == publicHander) {
+            publicHander = new PublicHander();
+        }
+        //增加监听
+        publicHander.setHandlerListener(this);
 
         requestSmsCode();
 
@@ -83,7 +95,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
             public void onCaptchaInputFinish(CharSequence captcha) {
                 LoggerUtils.e(TAG, "onCaptchaInputFinish.captcha" + captcha.toString());
                 //验证码输入完自动触发登录请求
-                requestLoginByPhone(captcha.toString());
+                requestLoginByPhone("1234");
             }
 
             @Override
@@ -122,7 +134,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
             }
 
             //配置参数
-            SmsCodeBody body = new SmsCodeBody();
+            com.xinao.serlinkclient.net.body.login.SmsCodeBody body = new com.xinao.serlinkclient.net.body.login.SmsCodeBody();
             body.setPhoneNo(phone);
             //发起请求
             mPresenter.requestDefault(body);
@@ -133,11 +145,16 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
      * 登录
      */
     private void requestLoginByPhone(String code) {
-        LoginByPhoneBody body = new LoginByPhoneBody();
+        com.xinao.serlinkclient.net.body.login.LoginByPhoneBody body = new com.xinao.serlinkclient.net.body.login.LoginByPhoneBody();
         if (!TextUtils.isEmpty(phone)) {
             body.setPhoneNo(phone);
         }
         body.setSmsCode(code);
+        if (null!=bundle && bundle.containsKey(IKey.KEY_BUNDLE_TOKEN)){
+            body.setDeviceCode(bundle.getString(IKey.KEY_BUNDLE_TOKEN));
+        }
+        body.setOsType(IKey.VALUE_OSTYPE);
+        body.setUserType(IKey.VALUE_USERTYPE);
         mPresenter.requestLoginByPhone(body);
     }
 
@@ -146,8 +163,8 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
      */
     @Override
     public void loginRequestLoading() {
-//        WaitDialog.show(CodeActivity.this, "登录中...")
-//                .setOnBackClickListener(() -> false);
+        WaitDialog.show(CodeActivity.this, "登录中...")
+                .setOnBackClickListener(() -> false);
     }
 
     /**
@@ -182,13 +199,11 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
     @Override
     public void requestLoginByPhoneSuccess(Object response) {
         LoginResponse login = (LoginResponse) response;
-        if (null != login) {
-//            new Handler().postDelayed(() ->
-//                    runOnUiThread(() ->
-//                            TipDialog.show(CodeActivity.this, "成功！",
-//                                    TipDialog.TYPE.SUCCESS).setOnDismissListener(() ->
-                                    IntentUtils.getIntance().intent(CodeActivity.this, MainActivity.class, null);
-//        )), 1000);
+        if (null != login && null != publicHander) {
+            publicHander.removeMessages(IHelper.HANDLER_LOGIN_CODE_SUCCESS);
+            Message message = publicHander.obtainMessage(IHelper.HANDLER_LOGIN_CODE_SUCCESS);
+            message.obj = login.getToken();
+            publicHander.sendMessageDelayed(message, 1000);
         }
     }
 
@@ -200,8 +215,52 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
      */
     @Override
     public void requestLoginByPhoneFailure(int status, String errorMsg) {
-        ToastUtil.show(getApplicationContext(), errorMsg);
-//        new Handler().postDelayed(() -> runOnUiThread(() ->
-//                TipDialog.show(CodeActivity.this,errorMsg,TipDialog.TYPE.ERROR).doDismiss()),1000);
+        if (null != publicHander) {
+            publicHander.removeMessages(IHelper.HANDLER_LOGIN_CODE_ERROR);
+            Message message = publicHander.obtainMessage(IHelper.HANDLER_LOGIN_CODE_ERROR);
+            message.obj = errorMsg;
+            publicHander.sendMessageDelayed(message, 1000);
+        }
+    }
+
+    @Override
+    public void handlerSendMsg(int status, Object obj) {
+        switch (status) {
+            case IHelper.HANDLER_LOGIN_CODE_SUCCESS:
+                final String token = (String) obj;
+                if (!TextUtils.isEmpty(token)) {
+                    saveUserInfo(token);
+                }
+                TipDialog.show(CodeActivity.this, "登录成功！",
+                        TipDialog.TYPE.SUCCESS).setOnDismissListener(() ->
+                        {
+                            if (null != LoginActivity.instance) {
+                                LoginActivity.instance.finish();
+                            }
+                            IntentUtils.getIntance().intent(CodeActivity.this, MainActivity.class, null);
+                        }
+                );
+                break;
+            case IHelper.HANDLER_LOGIN_CODE_ERROR:
+                String errorMsg = (String) obj;
+                TipDialog.show(CodeActivity.this, errorMsg, TipDialog.TYPE.ERROR).doDismiss();
+                break;
+        }
+    }
+
+    /**
+     * 将登陆返回的用户信息存入数据库中
+     *
+     * @param token
+     */
+    private void saveUserInfo(String token) {
+        new Thread(() -> {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserid(String.valueOf(1));
+            userInfo.setPhone(phone);
+            userInfo.setToken(token);
+            userInfo.setLoginstate(IHelper.LOGIN_SUCCESS);
+            RoomManager.getInstance(CodeActivity.this).getUserDao().insertAll(userInfo);
+        }).start();
     }
 }
