@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.kongzue.dialog.v3.TipDialog;
+import com.kongzue.dialog.v3.WaitDialog;
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.activity.MainActivity;
 import com.xinao.serlinkoperate.base.BaseActivity;
@@ -17,10 +19,16 @@ import com.xinao.serlinkoperate.bean.login.LoginResponse;
 import com.xinao.serlinkoperate.bean.login.SmsCode;
 import com.xinao.serlinkoperate.login_register.mvp.presenter.CodePresenter;
 import com.xinao.serlinkoperate.login_register.mvp.view.ICodeView;
+import com.xinao.serlinkoperate.net.body.login.LoginByPhoneBody;
+import com.xinao.serlinkoperate.net.body.login.SmsCodeBody;
+import com.xinao.serlinkoperate.room.RoomManager;
+import com.xinao.serlinkoperate.room.entity.UserInfo;
+import com.xinao.serlinkoperate.util.IHandlerListener;
 import com.xinao.serlinkoperate.util.IHelper;
 import com.xinao.serlinkoperate.util.IKey;
 import com.xinao.serlinkoperate.util.IntentUtils;
 import com.xinao.serlinkoperate.util.LoggerUtils;
+import com.xinao.serlinkoperate.util.PublicHander;
 import com.xinao.serlinkoperate.util.ToastUtil;
 import com.xinao.serlinkoperate.wedgit.NoDoubleClickListener;
 import com.xinao.serlinkoperate.wedgit.NumberCaptchaInputView;
@@ -134,7 +142,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
             }
 
             //配置参数
-            com.xinao.serlinkclient.net.body.login.SmsCodeBody body = new com.xinao.serlinkclient.net.body.login.SmsCodeBody();
+            SmsCodeBody body = new SmsCodeBody();
             body.setPhoneNo(phone);
             //发起请求
             mPresenter.requestDefault(body);
@@ -145,7 +153,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
      * 登录
      */
     private void requestLoginByPhone(String code) {
-        com.xinao.serlinkclient.net.body.login.LoginByPhoneBody body = new com.xinao.serlinkclient.net.body.login.LoginByPhoneBody();
+        LoginByPhoneBody body = new LoginByPhoneBody();
         if (!TextUtils.isEmpty(phone)) {
             body.setPhoneNo(phone);
         }

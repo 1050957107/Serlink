@@ -1,8 +1,9 @@
 package com.xinao.serlinkoperate.util;
 
 public interface IHelper {
-    String LOGIN_DEFAULT = "default_status";
-    String LOGIN_SUCCESS = "login_success";
+    int LOGIN_DEFAULT = 0;
+    int LOGIN_SUCCESS = 1;
+
     String LOGIN_MESSAGE = "需要您登录哟~";
 
     int LOGIN_TYPE_ONEKEY=1;//一键登录标识
@@ -20,4 +21,10 @@ public interface IHelper {
     int NETWORK_404 = 404; //其它错误
     int NETWORK_999 = 999;
     String ERROR_ORDER_MSG = "请求失败";
+
+    int HANDLER_LOGIN_CODE_SUCCESS=0x11;
+    int HANDLER_LOGIN_CODE_ERROR=0x12;
+    int HANDLER_MAIN_FIND_USER=0x13;
+
 }
+

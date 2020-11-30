@@ -1,4 +1,4 @@
-package com.xinao.serlinkclient.net.body.login;
+package com.xinao.serlinkoperate.net.body.login;
 
 /**
  * 获取验证码 参数 Body实体类
