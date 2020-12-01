@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/group3"
+        app:layout_constraintTop_toBottomOf="@id/clear"
         android:background="#EBEBEB"
         android:id="@+id/img2"
         />
@@ -70,7 +70,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/group3"
+        android:id="@+id/clear"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -84,6 +84,7 @@
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow"
+            android:layout_marginLeft="9dp"
             android:layout_alignParentRight="true"
             android:id="@+id/iv_arrow_one"
             />
@@ -93,6 +94,7 @@
             android:textColor="#999999"
             android:textSize="14sp"
             android:text="723M"
+            android:id="@+id/clear_context"
             android:layout_toLeftOf="@id/iv_arrow_one"
             />
     </RelativeLayout>
@@ -117,6 +119,7 @@
             android:src="@drawable/arrow"
             android:layout_alignParentRight="true"
             android:id="@+id/iv_arrow_two"
+            android:layout_marginLeft="9dp"
             />
         <TextView
             android:layout_width="wrap_content"

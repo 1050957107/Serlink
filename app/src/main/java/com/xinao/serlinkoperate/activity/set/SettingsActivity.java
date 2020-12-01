@@ -5,11 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.util.IntentUtils;
+import com.xinao.serlinkoperate.util.ToastUtil;
+import com.xinao.serlinkoperate.wedgit.NoDoubleClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +27,10 @@ public class SettingsActivity extends BaseActivity<Presenter> implements IBaseVi
     RelativeLayout setAboutapp;
     @BindView(R.id.iv_code_back)
     ImageView ivCodeBack;
+    @BindView(R.id.clear_context)
+    TextView clearContext;
+    @BindView(R.id.clear)
+    RelativeLayout clear;
 
     @Override
     protected int provideContentViewId() {
@@ -42,23 +50,31 @@ public class SettingsActivity extends BaseActivity<Presenter> implements IBaseVi
 
     @Override
     public void init() {
-
+        setAboutapp.setOnClickListener(doubleClickListener);
+        settingSet.setOnClickListener(doubleClickListener);
+        ivCodeBack.setOnClickListener(doubleClickListener);
+        clear.setOnClickListener(doubleClickListener);
     }
 
-
-    @OnClick({R.id.setting_set, R.id.set_aboutapp,R.id.iv_code_back})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.setting_set:
-                startActivity(new Intent(this, SettingActivity.class));
-                break;
-            case R.id.set_aboutapp:
-                startActivity(new Intent(this, AboutAppActivity.class));
-                break;
-            case R.id.iv_code_back:
-                finish();
-                break;
+    private NoDoubleClickListener doubleClickListener=new NoDoubleClickListener() {
+        @Override
+        protected void onNoDoubleClick(View v) {
+            switch (v.getId()) {
+                case R.id.setting_set:
+                    IntentUtils.getIntance().intent(SettingsActivity.this,SettingActivity.class,null);
+                    break;
+                case R.id.set_aboutapp:
+                    IntentUtils.getIntance().intent(SettingsActivity.this,AboutAppActivity.class,null);
+                    break;
+                case R.id.iv_code_back:
+                    finish();
+                    break;
+                case R.id.clear:
+                    ToastUtil.show(SettingsActivity.this,"清除完毕");
+                    clearContext.setText("0M");
+                    break;
+            }
         }
-    }
+    };
 
 }

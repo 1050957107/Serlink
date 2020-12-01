@@ -75,7 +75,7 @@
         android:background="#EBEBEB"
         />
     <RelativeLayout
-        android:id="@+id/group3"
+        android:id="@+id/problem_type_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/img2"
@@ -98,14 +98,14 @@
     </RelativeLayout>
     <ImageView
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/group3"
+        app:layout_constraintTop_toBottomOf="@id/problem_type_two"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:id="@+id/img3"
         android:background="#EBEBEB"
         />
     <RelativeLayout
-        android:id="@+id/group4"
+        android:id="@+id/problem_type_three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/img3"
@@ -128,14 +128,14 @@
     </RelativeLayout>
     <ImageView
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/group4"
+        app:layout_constraintTop_toBottomOf="@id/problem_type_three"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:id="@+id/img4"
         android:background="#EBEBEB"
         />
     <RelativeLayout
-        android:id="@+id/group5"
+        android:id="@+id/problem_type_four"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/img4"

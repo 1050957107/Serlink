@@ -1,15 +1,16 @@
-package com.xinao.serlinkoperate.activity.tool.toolfragment;
+package com.xinao.serlinkoperate.fragment.messageinfo;
 
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseFragment;
+import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
 
 /**
- * @date：2020/11/28
+ * @date：2020/12/1
  * @describe：
  * @author：DanDan
  */
-public class ProjectFragment extends BaseFragment {
+public class FocusFragment extends BaseFragment<Presenter> implements IBaseView {
     @Override
     protected void refreshData() {
 
@@ -17,7 +18,7 @@ public class ProjectFragment extends BaseFragment {
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.fragment_project;
+        return R.layout.fragment_focus;
     }
 
     @Override

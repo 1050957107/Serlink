@@ -210,7 +210,7 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
         if (null != login && null != publicHander) {
             publicHander.removeMessages(IHelper.HANDLER_LOGIN_CODE_SUCCESS);
             Message message = publicHander.obtainMessage(IHelper.HANDLER_LOGIN_CODE_SUCCESS);
-            message.obj = login.getToken();
+            message.obj = login;
             publicHander.sendMessageDelayed(message, 1000);
         }
     }
@@ -235,10 +235,8 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
     public void handlerSendMsg(int status, Object obj) {
         switch (status) {
             case IHelper.HANDLER_LOGIN_CODE_SUCCESS:
-                final String token = (String) obj;
-                if (!TextUtils.isEmpty(token)) {
-                    saveUserInfo(token);
-                }
+                LoginResponse login = (LoginResponse) obj;
+                    saveUserInfo(login.getToken(),login.getUserId());
                 TipDialog.show(CodeActivity.this, "登录成功！",
                         TipDialog.TYPE.SUCCESS).setOnDismissListener(() ->
                         {
@@ -261,10 +259,10 @@ public class CodeActivity extends BaseActivity<CodePresenter> implements ICodeVi
      *
      * @param token
      */
-    private void saveUserInfo(String token) {
+    private void saveUserInfo(String token, int userId) {
         new Thread(() -> {
             UserInfo userInfo = new UserInfo();
-            userInfo.setUserid(String.valueOf(1));
+            userInfo.setUserid(String.valueOf(userId));
             userInfo.setPhone(phone);
             userInfo.setToken(token);
             userInfo.setLoginstate(IHelper.LOGIN_SUCCESS);

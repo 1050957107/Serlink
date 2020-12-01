@@ -20,18 +20,16 @@ import com.xinao.serlinkoperate.activity.SafeActivity;
 import com.xinao.serlinkoperate.activity.headinfo.HeadInfoActivity;
 import com.xinao.serlinkoperate.activity.problem.ProblemActivity;
 import com.xinao.serlinkoperate.activity.set.SettingsActivity;
-import com.xinao.serlinkoperate.activity.tool.ToolActivity;
+import com.xinao.serlinkoperate.activity.ToolActivity;
 import com.xinao.serlinkoperate.base.BaseFragment;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
-import com.xinao.serlinkoperate.login_register.BindPhoneActivity;
 import com.xinao.serlinkoperate.login_register.LoginActivity;
 import com.xinao.serlinkoperate.util.IntentUtils;
 import com.xinao.serlinkoperate.wedgit.NoDoubleClickListener;
 import com.xinao.serlinkoperate.wedgit.PhonePopWindow;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import razerdp.basepopup.BasePopupWindow;
 
 public class MeFragment extends BaseFragment<Presenter> implements IBaseView {

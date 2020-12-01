@@ -13,11 +13,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        ndk {
-            //可以根据需要来自行选择并添加对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            //还可以添加 'x86', 'x86_64', 'mips', 'mips64'
-        }
+//        ndk {
+//            //可以根据需要来自行选择并添加对应cpu类型的.so库。
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            //还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//        }
     }
 
     lintOptions {

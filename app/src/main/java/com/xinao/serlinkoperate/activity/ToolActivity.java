@@ -1,39 +1,37 @@
-package com.xinao.serlinkoperate.activity.problem.type;
+package com.xinao.serlinkoperate.activity;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 import com.xinao.serlinkoperate.R;
 import com.xinao.serlinkoperate.base.BaseActivity;
 import com.xinao.serlinkoperate.base.IBaseView;
 import com.xinao.serlinkoperate.base.Presenter;
+import com.xinao.serlinkoperate.wedgit.FragmentAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * @date：2020/11/28
- * @describe：
- * @author：DanDan
- */
-public class ProblemTypeOneActivity extends BaseActivity<Presenter> implements IBaseView {
+public class ToolActivity extends BaseActivity<Presenter> implements IBaseView {
+
+
     @BindView(R.id.iv_code_back)
     ImageView ivCodeBack;
-    @BindView(R.id.group1)
-    LinearLayout group1;
-    @BindView(R.id.img1)
-    ImageView img1;
-    @BindView(R.id.group2)
-    TextView group2;
-    @BindView(R.id.img2)
-    ImageView img2;
+    @BindView(R.id.ll)
+    LinearLayout ll;
+
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.activity_problem_type_one;
+        return R.layout.activity_tool;
     }
 
     @Override

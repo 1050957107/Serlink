@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon, android:theme">
         <activity android:name=".activity.set.AboutAppActivity"></activity>
-        <activity android:name=".activity.problem.type.ProblemTypeOneActivity" />
+        <activity android:name=".activity.problem.ProblemTypeActivity" />
         <activity android:name=".activity.set.SettingActivity" />
         <activity android:name=".activity.set.SettingsActivity" />
         <activity android:name=".activity.headinfo.ChangetNameActivity" />
@@ -26,7 +26,7 @@
         <activity android:name=".activity.headinfo.HeadInfoActivity" />
         <activity android:name=".activity.SafeActivity" />
         <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.tool.ToolActivity" />
+        <activity android:name=".activity.ToolActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,5 @@
 package com.xinao.serlinkoperate.activity;
 
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -27,7 +26,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<Presenter> implements IBaseView {
 

@@ -34,7 +34,7 @@
         android:text="图片上传"
         android:textColor="#333333"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/group7" />
+        app:layout_constraintTop_toBottomOf="@id/idea_problem_feedback" />
     <ImageView
         android:id="@+id/img4"
         android:layout_width="match_parent"
@@ -68,19 +68,20 @@
         app:layout_constraintTop_toBottomOf="@id/group4" />
 
     <RelativeLayout
-        android:id="@+id/group7"
+        android:id="@+id/idea_problem_feedback"
         android:layout_width="match_parent"
         android:layout_height="153dp"
         android:layout_marginTop="20dp"
         android:background="#F7F7F7"
         app:layout_constraintTop_toBottomOf="@id/group6">
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="选择问题类型，并填写3字以上的反馈，我们将尽快解决"
+            android:hint="选择问题类型，并填写3字以上的反馈，我们将尽快解决"
             android:textColor="#ff999999"
+            android:id="@+id/idea_feedback"
+            android:backgroundTint="@android:color/transparent"
             android:textSize="14sp" />
         <TextView
             android:layout_width="wrap_content"
@@ -90,42 +91,58 @@
             android:layout_alignParentBottom="true"
             android:textColor="#999999"
             android:textSize="14sp"
+            android:id="@+id/idea_beedback_number"
             />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/group6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv">
-
-        <TextView
-            android:layout_width="wrap_content"
+        >
+        <RelativeLayout
+            android:id="@+id/group6"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/cicyle_white"
-            android:text="功能异常"
-            android:textColor="#333333"
-            android:textSize="13sp" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tv"
+            >
+               <Button
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:text="功能异常"
+                   android:id="@+id/dysfunction"
+                   android:background="@drawable/idea_textstyle"
+                   android:button="@null"
+                   android:textColor="#333333"
+                   android:gravity="center"
+                   android:textSize="13sp"
+                   />
+               <RadioButton
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:text="优化建议"
+                   android:id="@+id/suggestion"
+                   android:layout_centerInParent="true"
+                   android:layout_gravity="center_horizontal"
+                   android:background="@drawable/idea_textstyle"
+                   android:button="@null"
+                   android:textColor="#333333"
+                   android:gravity="center"
+                   android:textSize="13sp"
+                   />
+               <RadioButton
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:text="其他反馈"
+                   android:id="@+id/other_feedback"
+                   android:layout_gravity="right"
+                   android:layout_alignParentRight="true"
+                   android:background="@drawable/idea_textstyle"
+                   android:button="@null"
+                   android:textColor="#333333"
+                   android:gravity="center"
+                   android:textSize="13sp"
+                   />
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ciclyle"
-            android:text="功能异常"
-            android:textColor="#333333"
-            android:textSize="13sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/cicyle_white"
-            android:text="其他反馈"
-            android:textColor="#333333"
-            android:textSize="13sp" />
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/group5"
@@ -173,6 +190,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

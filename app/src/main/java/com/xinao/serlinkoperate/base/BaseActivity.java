@@ -3,10 +3,16 @@ package com.xinao.serlinkoperate.base;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 
@@ -69,5 +75,36 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected abstract void destory();
 
+    public void closeInputMethod(){
 
+        try {
+
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+
+                    .hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+        } catch (Exception e) { }finally{ }
+
+    }
+
+    /**
+
+     *
+
+     * @MethodName:openInputMethod
+
+     * @Description:打开系统软键盘
+
+     * @throws
+
+     */
+
+    public void openInputMethod(View v){
+
+        InputMethodManager inputMethodManager=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
+    }
 }

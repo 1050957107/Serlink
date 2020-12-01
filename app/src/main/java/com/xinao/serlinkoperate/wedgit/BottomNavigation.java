@@ -123,7 +123,6 @@ public class BottomNavigation extends ConstraintLayout {
     }
 
     public BottomNavigation addItem(@DrawableRes int drawableId, String title) {
-
         mDrawableRes.add(drawableId);
         mTitles.add(title);
         return this;

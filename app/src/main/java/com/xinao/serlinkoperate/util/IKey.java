@@ -15,4 +15,6 @@ public interface IKey {
 
     String VALUE_OSTYPE="2";
     String VALUE_USERTYPE="1";
+    String PROBLEM_TITLE="problem_title";
+    String PROBLEM_CONTEXT = "problem_context";
 }

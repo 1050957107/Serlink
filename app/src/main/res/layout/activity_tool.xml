@@ -25,17 +25,6 @@
             android:text="工具箱使用记录"
             />
     </LinearLayout>
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tool_tab"
-        app:tabSelectedTextColor="#1ABD9D"
-        app:tabTextColor="#666666"
-        />
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tool_ViewPager"
-        />
+
 
 </LinearLayout>
