@@ -1,11 +1,13 @@
 package com.xinao.serlinkoperate.fragment.messageinfo;
 
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,6 +76,7 @@ public class AlarmFragment extends BaseFragment {
         messageRecyclerView.setLayoutManager(linearLayoutManager);
         messageRecyclerView.addItemDecoration(new SpacesItemDecoration(30));
         messageRecyclerView.setAdapter(alarmAdapter);
+        messageRecyclerView.addOnItemTouchListener(mScrollTouchListener);
         alarmBeans = new ArrayList<>();
         alarmBeans.add(getdata1());
         alarmBeans.add(getdata2());
@@ -129,5 +132,27 @@ public class AlarmFragment extends BaseFragment {
         alarmBean.setUnsure("5未确认");
         return alarmBean;
     }
+    RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener(){
+
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            int action = e.getAction();
+            switch(action){
+                case MotionEvent.ACTION_MOVE:
+                    rv.getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    };
 
 }
